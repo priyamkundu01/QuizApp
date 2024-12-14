@@ -1,15 +1,37 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  PressableProps,
+} from "react-native";
+import React, { ComponentProps } from "react";
 
-type CustomButton = {
+/* type CustomButton = {
   title: string;
   rightIcon?: React.ReactNode;
   onPress: () => void;
-};
+}; */
 
-export default function CustomButton({ title, rightIcon, onPress}: CustomButton) {
+/* type CustomButton = {
+  title: string;
+  rightIcon?: React.ReactNode;
+} & PressableProps; */
+type CustomButton = {
+  title: string;
+  rightIcon?: React.ReactNode;
+} & ComponentProps<typeof Pressable>;
+
+// export default function CustomButton({ title, rightIcon, onPress}: CustomButton) {
+// export default function CustomButton({ title, rightIcon, ...pressableProps}: CustomButton) {
+export default function CustomButton({
+  title,
+  rightIcon,
+  ...ComponentProps
+}: CustomButton) {
   return (
-    <Pressable onPress={onPress} style={styles.button}>
+    // <Pressable {...pressableProps} style={styles.button}>
+    <Pressable {...ComponentProps} style={styles.button}>
       <Text style={styles.buttonText}>{title}</Text>
       <View style={styles.rightIcon}>{rightIcon}</View>
     </Pressable>
