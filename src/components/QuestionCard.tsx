@@ -3,6 +3,7 @@ import React from "react";
 import AnswerOption from "./AnswerOption";
 import { Question } from "../type";
 import questions from "../questions";
+import Card from "./Card";
 
 /* type Question = {
   title: string;
@@ -21,8 +22,8 @@ const QuestionCard = ({ question }: QuestionCard) => {
   const selectedOption = question.options[2];
   console.log(question.options);
   return (
-    <View style={styles.questionCard}>
-      <Text style={styles.question}>{question.title}</Text>
+    <Card title={question.title}>
+      {/* <Text style={styles.question}>{question.title}</Text> */}
       <View style={{ gap: 10 }}>
         {question.options.map((option, index) => (
           <AnswerOption
@@ -58,33 +59,8 @@ const QuestionCard = ({ question }: QuestionCard) => {
           onPress={() => optionSelected(question.options[3])}
         /> */}
       </View>
-    </View>
+    </Card>
   );
 };
 
 export default QuestionCard;
-
-const styles = StyleSheet.create({
-  questionCard: {
-    width: "100%",
-    backgroundColor: "#ffffff",
-    padding: 20,
-    borderRadius: 20,
-    paddingVertical: 40,
-    gap: 20,
-    // Shaddow
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
-  },
-  question: {
-    fontSize: 24,
-    fontWeight: 500,
-  },
-});
